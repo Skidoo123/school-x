@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Ranaf Hub - Student Portal</title>
+    <!-- Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Tailwind Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ffb4ab",
+                        "surface-dim": "#131313",
+                        "inverse-primary": "#5a632e",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#414a32",
+                        "secondary": "#c1cc9a",
+                        "text-primary": "#f2f2f2",
+                        "surface": "#131313",
+                        "on-secondary-container": "#b3bd8d",
+                        "surface-variant": "#353534",
+                        "on-tertiary-container": "#bbc5a5",
+                        "secondary-fixed": "#dde8b5",
+                        "tertiary-fixed-dim": "#c0cbab",
+                        "tertiary-container": "#495239",
+                        "on-secondary-fixed-variant": "#424a25",
+                        "on-primary": "#2d3404",
+                        "on-surface": "#e5e2e1",
+                        "surface-tint": "#c3cc8c",
+                        "on-tertiary": "#2b331d",
+                        "background-black": "#000000",
+                        "inverse-on-surface": "#313030",
+                        "primary-container": "#4b5320",
+                        "surface-charcoal": "#121212",
+                        "surface-container-highest": "#353534",
+                        "tertiary-fixed": "#dde7c6",
+                        "surface-bright": "#393939",
+                        "secondary-fixed-dim": "#c1cc9a",
+                        "on-tertiary-fixed": "#161e0a",
+                        "tertiary": "#c0cbab",
+                        "error-container": "#93000a",
+                        "surface-container": "#201f1f",
+                        "tactical-accent": "#5e6931",
+                        "text-secondary": "#a1a1a1",
+                        "primary": "#c3cc8c",
+                        "on-secondary": "#2b3410",
+                        "on-primary-container": "#bdc787",
+                        "surface-container-high": "#2a2a2a",
+                        "inverse-surface": "#e5e2e1",
+                        "on-secondary-fixed": "#171e01",
+                        "surface-container-lowest": "#0e0e0e",
+                        "outline": "#919283",
+                        "primary-fixed": "#dfe8a6",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-fixed-dim": "#c3cc8c",
+                        "outline-variant": "#47483c",
+                        "on-surface-variant": "#c8c7b8",
+                        "background": "#131313",
+                        "on-primary-fixed-variant": "#434b18",
+                        "glass-border": "rgba(255, 255, 255, 0.12)",
+                        "on-primary-fixed": "#191e00",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#e5e2e1",
+                        "secondary-container": "#444d27"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "32px",
+                        "base": "8px",
+                        "sidebar": "280px",
+                        "gutter": "24px",
+                        "glass-padding": "24px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #f2f2f2;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .glass-panel {
+            background-color: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .glass-input {
+            background: #2a2a2a;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.3s ease;
+            color: #f2f2f2;
+        }
+        
+        .glass-input:focus {
+            background: #353534;
+            border-color: #4b5320;
+            box-shadow: 0 0 0 2px rgba(75, 83, 32, 0.2);
+        }
+
+        .table-row-hover:hover {
+            background-color: #1c1b1b;
+        }
+
+        .section-panel {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .section-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #353534;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5e6931;
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden font-body-md text-body-md selection:bg-tactical-accent/30 selection:text-white">
+
+    <!-- Authentication Screen Overlay -->
+    <div id="auth-section" class="fixed inset-0 z-50 flex items-center justify-center bg-background-black bg-opacity-95">
+        <div class="glass-panel rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 rounded-xl bg-surface flex items-center justify-center border border-glass-border mx-auto mb-4">
+                    <img class="w-12 h-12 object-cover" src="assets/logo.png" alt="Ranaf Hub Logo" onerror="this.src='https://img.icons8.com/color/96/000000/education.png'"/>
+                </div>
+                <h2 class="font-headline-md text-headline-md text-text-primary font-bold">Ranaf Hub Student</h2>
+                <p class="text-text-secondary text-sm mt-1">Access your academic intelligence portal</p>
+            </div>
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label class="font-label-md text-label-md text-text-secondary mb-1 block">Email Address</label>
+                    <input type="email" id="login-email" class="w-full glass-input rounded-lg py-2.5 px-3 focus:outline-none" placeholder="student@ranafhub.com" value="student@ranafhub.com" required/>
+                </div>
+                <div>
+                    <label class="font-label-md text-label-md text-text-secondary mb-1 block">Password</label>
+                    <input type="password" id="login-password" class="w-full glass-input rounded-lg py-2.5 px-3 focus:outline-none" placeholder="••••••••" value="password" required/>
+                </div>
+                <button type="submit" class="w-full bg-primary-container text-text-primary hover:brightness-110 font-label-md text-label-md py-3 rounded-lg shadow-md transition-all flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined">login</span>
+                    Login to Portal
+                </button>
+            </form>
+            <div class="text-center mt-6 pt-4 border-t border-glass-border">
+                <p class="text-xs text-text-secondary">Are you a Lecturer? <a href="admin.html" class="text-primary hover:text-primary-fixed transition-colors font-medium">Go to Admin Portal</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Workspace Container -->
+    <div id="app-section" style="display: none;" class="flex w-full h-full">
+        
+        <!-- SideNavBar -->
+        <nav class="w-sidebar h-screen flex flex-col py-base bg-surface-charcoal border-r border-glass-border flex-shrink-0">
+            <!-- Brand -->
+            <div class="px-6 py-6 mb-4 flex items-center gap-4">
+                <div class="w-10 h-10 rounded-lg bg-surface flex items-center justify-center border border-glass-border overflow-hidden">
+                    <img class="w-full h-full object-cover" src="assets/logo.png" alt="Ranaf Hub Logo" onerror="this.src='https://img.icons8.com/color/96/000000/education.png'"/>
+                </div>
+                <div>
+                    <h1 class="font-headline-sm text-headline-sm text-on-surface">Student Portal</h1>
+                    <p class="font-label-sm text-label-sm text-tactical-accent mt-1 uppercase tracking-widest">Academic Hub</p>
+                </div>
+            </div>
+            
+            <!-- Navigation Links -->
+            <div class="flex-1 overflow-y-auto px-2 space-y-1">
+                <a data-target="dashboard" class="flex items-center gap-3 text-secondary font-bold border-l-4 border-primary bg-primary/10 px-4 py-3 rounded-r transition-transform translate-x-1 cursor-pointer w-full" href="#">
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                    <span class="font-label-md text-label-md">Dashboard</span>
+                </a>
+                <a data-target="attendance" class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-white/5 transition-all duration-200 rounded cursor-pointer w-full" href="#">
+                    <span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
+                    <span class="font-label-md text-label-md">Attendance Logs</span>
+                </a>
+                <a data-target="materials" class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-white/5 transition-all duration-200 rounded cursor-pointer w-full" href="#">
+                    <span class="material-symbols-outlined text-[20px]">library_books</span>
+                    <span class="font-label-md text-label-md">Materials</span>
+                </a>
+                <a data-target="assessments" class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-white/5 transition-all duration-200 rounded cursor-pointer w-full" href="#">
+                    <span class="material-symbols-outlined text-[20px]">assignment_turned_in</span>
+                    <span class="font-label-md text-label-md">Assessments</span>
+                </a>
+                <a data-target="chat" class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-white/5 transition-all duration-200 rounded cursor-pointer w-full" href="#">
+                    <span class="material-symbols-outlined text-[20px]">forum</span>
+                    <span class="font-label-md text-label-md">Community</span>
+                </a>
+            </div>
+            
+            <!-- Footer controls -->
+            <div class="px-4 mt-auto space-y-4">
+                <button onclick="showModal('verify-selector-modal')" class="w-full bg-surface-dim border border-glass-border hover:bg-white/5 text-tactical-accent font-label-md text-label-md py-3 rounded transition-colors flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">verified</span>
+                    Verify Attendance
+                </button>
+                <button id="logout-btn" class="w-full flex items-center gap-3 text-on-surface-variant hover:text-error px-4 py-3 hover:bg-white/5 transition-all duration-200 rounded border-t border-glass-border text-left">
+                    <span class="material-symbols-outlined text-[20px]">logout</span>
+                    <span class="font-label-md text-label-md">Logout</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 flex h-full overflow-hidden bg-background-black/40 relative">
+            
+            <!-- Topbar (Only visible when panels are not full-sized sidebars) -->
+            <header id="top-bar" class="absolute top-0 left-0 right-0 h-20 bg-background-black/60 backdrop-blur-md border-b border-glass-border z-20 flex items-center justify-between px-margin-desktop">
+                <div>
+                    <h2 id="page-title" class="font-headline-sm text-headline-sm text-text-primary">Dashboard</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span id="user-name-display" class="font-label-md text-label-md font-medium text-text-primary">Student</span>
+                    <div class="w-8 h-8 rounded-full bg-primary-container text-text-primary flex items-center justify-center font-bold text-xs">S</div>
+                </div>
+            </header>
+
+            <!-- Workspace panels container -->
+            <div class="flex-1 h-full pt-20 overflow-hidden relative">
+                
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="section-panel active h-full overflow-y-auto p-margin-desktop space-y-6">
+                    <div class="mb-4">
+                        <h2 class="font-headline-lg text-headline-lg text-text-primary font-bold">Academic Analytics</h2>
+                        <p class="font-body-md text-body-md text-text-secondary mt-1">Here is a summary of your modules and logs today.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <div class="glass-panel rounded-xl p-6 flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-[28px]">analytics</span>
+                            </div>
+                            <div>
+                                <p class="text-xs text-text-secondary uppercase tracking-wider">Overall Attendance</p>
+                                <h3 class="text-2xl font-bold text-text-primary mt-1">85%</h3>
+                            </div>
+                        </div>
+                        <div class="glass-panel rounded-xl p-6 flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-[28px]">pending_actions</span>
+                            </div>
+                            <div>
+                                <p class="text-xs text-text-secondary uppercase tracking-wider">Pending Tasks</p>
+                                <h3 class="text-2xl font-bold text-text-primary mt-1">2</h3>
+                            </div>
+                        </div>
+                        <div class="glass-panel rounded-xl p-6 flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-[28px]">folder_shared</span>
+                            </div>
+                            <div>
+                                <p class="text-xs text-text-secondary uppercase tracking-wider">New Materials</p>
+                                <h3 class="text-2xl font-bold text-text-primary mt-1">12</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Attendance Trigger panel -->
+                    <div class="glass-panel rounded-xl p-6">
+                        <h3 class="font-headline-sm text-headline-sm text-text-primary mb-4">Quick Attendance Check</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <button onclick="showModal('qr-modal')" class="bg-surface-container-high border border-glass-border hover:bg-surface-container-highest transition-colors rounded-lg py-4 flex flex-col items-center gap-2 text-text-primary text-body-lg font-medium">
+                                <span class="material-symbols-outlined text-[28px] text-primary">qr_code_scanner</span>
+                                Scan QR Code
+                            </button>
+                            <button onclick="showModal('otp-modal')" class="bg-surface-container-high border border-glass-border hover:bg-surface-container-highest transition-colors rounded-lg py-4 flex flex-col items-center gap-2 text-text-primary text-body-lg font-medium">
+                                <span class="material-symbols-outlined text-[28px] text-primary">pin</span>
+                                Enter OTP Pin
+                            </button>
+                            <button onclick="verifyWifiAttendance()" class="bg-surface-container-high border border-glass-border hover:bg-surface-container-highest transition-colors rounded-lg py-4 flex flex-col items-center gap-2 text-text-primary text-body-lg font-medium">
+                                <span class="material-symbols-outlined text-[28px] text-primary">wifi</span>
+                                Campus WiFi Location
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Attendance Section -->
+                <section id="attendance" class="section-panel h-full overflow-y-auto p-margin-desktop">
+                    <div class="glass-panel rounded-xl overflow-hidden">
+                        <div class="p-6 border-b border-glass-border">
+                            <h3 class="font-headline-sm text-headline-sm text-text-primary">Attendance History Logs</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-glass-border text-text-secondary font-label-md text-label-md bg-surface-charcoal">
+                                        <th class="py-4 px-6 font-medium">Date & Time</th>
+                                        <th class="py-4 px-6 font-medium">Course</th>
+                                        <th class="py-4 px-6 font-medium">Method Used</th>
+                                        <th class="py-4 px-6 font-medium text-right">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="attendance-list" class="font-body-md text-body-md bg-surface-charcoal">
+                                    <!-- Populated dynamically via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Materials Section -->
+                <section id="materials" class="section-panel h-full overflow-y-auto p-margin-desktop">
+                    <div class="mb-6">
+                        <h3 class="font-headline-sm text-headline-sm text-text-primary">Available Lectures & Slides</h3>
+                    </div>
+                    <div id="materials-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Populated dynamically via JS -->
+                    </div>
+                </section>
+
+                <!-- Assessments Section -->
+                <section id="assessments" class="section-panel h-full overflow-y-auto p-margin-desktop">
+                    <div class="glass-panel rounded-xl overflow-hidden">
+                        <div class="p-6 border-b border-glass-border">
+                            <h3 class="font-headline-sm text-headline-sm text-text-primary">Assignments & Homeworks</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-glass-border text-text-secondary font-label-md text-label-md bg-surface-charcoal">
+                                        <th class="py-4 px-6 font-medium">Assignment Title</th>
+                                        <th class="py-4 px-6 font-medium">Course</th>
+                                        <th class="py-4 px-6 font-medium">Deadline</th>
+                                        <th class="py-4 px-6 font-medium text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="assessments-list" class="font-body-md text-body-md bg-surface-charcoal">
+                                    <!-- Populated dynamically via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Chat Section (Split sidebar channels layout) -->
+                <section id="chat" class="section-panel h-full flex w-full">
+                    <!-- Channels Sidebar -->
+                    <aside class="w-64 glass-panel border-y-0 border-l-0 flex flex-col z-40 relative flex-shrink-0">
+                        <div class="p-4 border-b border-glass-border">
+                            <h2 class="font-headline-sm text-headline-sm text-text-primary mb-1">Channels</h2>
+                        </div>
+                        <div class="flex-1 overflow-y-auto p-4 space-y-6">
+                            <div>
+                                <h3 class="font-label-sm text-label-sm text-text-secondary uppercase tracking-widest mb-3 px-2">Academic Modules</h3>
+                                <ul class="space-y-1">
+                                    <li>
+                                        <button class="w-full flex items-center gap-2 px-2 py-2 rounded bg-white/5 text-secondary border border-glass-border transition-all">
+                                            <span class="material-symbols-outlined text-[16px]">tag</span>
+                                            <span class="font-body-md text-body-md truncate">CS101-General</span>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="w-full flex items-center gap-2 px-2 py-2 rounded text-text-secondary hover:bg-white/5 hover:text-text-primary transition-all">
+                                            <span class="material-symbols-outlined text-[16px]">tag</span>
+                                            <span class="font-body-md text-body-md truncate">MATH201-Discussion</span>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+                    <!-- Chat Container -->
+                    <div class="flex-1 flex flex-col bg-surface-charcoal relative overflow-hidden h-full">
+                        <div class="flex-1 p-6 overflow-y-auto flex flex-col gap-6 relative" id="chat-messages" style="height: calc(100% - 80px);">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                        <!-- Message Input -->
+                        <div class="p-4 border-t border-glass-border bg-surface-charcoal shrink-0">
+                            <div class="relative flex items-center gap-3">
+                                <input id="chat-input-text" class="w-full glass-input rounded-full py-3 pl-4 pr-12 font-body-md text-body-md focus:outline-none" placeholder="Type a message to #CS101-General..." type="text"/>
+                                <button onclick="sendMessage()" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-primary-container rounded-full flex items-center justify-center text-text-primary hover:bg-tactical-accent transition-colors">
+                                    <span class="material-symbols-outlined text-[16px]">send</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    
+    <!-- Verify Selector Modal -->
+    <div id="verify-selector-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="glass-panel rounded-2xl shadow-2xl p-6 max-w-md w-full relative mx-4 text-center">
+            <button class="absolute top-4 right-4 text-text-secondary hover:text-text-primary transition-colors text-xl" onclick="hideModal('verify-selector-modal')">&times;</button>
+            <h3 class="font-headline-sm text-headline-sm text-text-primary mb-6">Choose Verification Method</h3>
+            <div class="flex flex-col gap-3">
+                <button onclick="hideModal('verify-selector-modal'); showModal('qr-modal')" class="bg-surface-container-high border border-glass-border hover:bg-surface-container-highest transition-colors rounded-lg py-3 flex items-center justify-center gap-2 text-text-primary font-medium">
+                    <span class="material-symbols-outlined text-[20px] text-primary">qr_code_scanner</span>
+                    Scan Attendance QR
+                </button>
+                <button onclick="hideModal('verify-selector-modal'); showModal('otp-modal')" class="bg-surface-container-high border border-glass-border hover:bg-surface-container-highest transition-colors rounded-lg py-3 flex items-center justify-center gap-2 text-text-primary font-medium">
+                    <span class="material-symbols-outlined text-[20px] text-primary">pin</span>
+                    Enter Attendance OTP
+                </button>
+                <button onclick="hideModal('verify-selector-modal'); verifyWifiAttendance()" class="bg-surface-container-high border border-glass-border hover:bg-surface-container-highest transition-colors rounded-lg py-3 flex items-center justify-center gap-2 text-text-primary font-medium">
+                    <span class="material-symbols-outlined text-[20px] text-primary">wifi</span>
+                    Verify Campus WiFi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Scanner Modal -->
+    <div id="qr-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="glass-panel rounded-2xl shadow-2xl p-8 max-w-md w-full relative mx-4 text-center">
+            <button class="absolute top-4 right-4 text-text-secondary hover:text-text-primary transition-colors text-xl" onclick="hideModal('qr-modal')">&times;</button>
+            <h3 class="font-headline-sm text-headline-sm text-text-primary mb-6">Scan QR Attendance</h3>
+            <div class="border-2 border-dashed border-glass-border rounded-xl p-8 flex flex-col items-center justify-center text-center mb-6 bg-surface-container-high/20">
+                <span class="material-symbols-outlined text-[48px] text-primary mb-3">photo_camera</span>
+                <p class="font-body-md text-body-md text-text-primary font-medium">Camera Stream Active</p>
+                <p class="font-label-md text-label-md text-text-secondary mt-1">Point device camera at the lecturer's QR code.</p>
+            </div>
+            <button onclick="mockScanQR()" class="w-full bg-primary-container text-text-primary font-label-md text-label-md py-3 rounded-lg hover:bg-tactical-accent transition-colors">
+                Mock Successful Scan
+            </button>
+        </div>
+    </div>
+
+    <!-- OTP Modal -->
+    <div id="otp-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="glass-panel rounded-2xl shadow-2xl p-8 max-w-md w-full relative mx-4 text-center">
+            <button class="absolute top-4 right-4 text-text-secondary hover:text-text-primary transition-colors text-xl" onclick="hideModal('otp-modal')">&times;</button>
+            <h3 class="font-headline-sm text-headline-sm text-text-primary mb-6">Enter OTP Pin</h3>
+            <div class="mb-6">
+                <input id="otp-input" class="w-full glass-input rounded-lg py-3 text-center text-2xl font-bold tracking-widest focus:outline-none" placeholder="6-digit code" maxlength="6" type="text"/>
+            </div>
+            <button onclick="submitOTP()" class="w-full bg-primary-container text-text-primary font-label-md text-label-md py-3 rounded-lg hover:bg-tactical-accent transition-colors">
+                Verify Code
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

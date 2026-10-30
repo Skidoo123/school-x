@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Ranaf Hub - Lecturer Portal</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-container-highest": "#353534",
+                "inverse-primary": "#5a632e",
+                "primary-container": "#4b5320",
+                "surface-container": "#201f1f",
+                "on-tertiary-fixed": "#161e0a",
+                "on-primary-container": "#bdc787",
+                "surface-container-lowest": "#0e0e0e",
+                "surface-charcoal": "#121212",
+                "surface-dim": "#131313",
+                "secondary-fixed": "#dde8b5",
+                "on-primary-fixed": "#191e00",
+                "tertiary": "#c0cbab",
+                "outline-variant": "#47483c",
+                "on-surface": "#e5e2e1",
+                "inverse-on-surface": "#313030",
+                "on-tertiary-fixed-variant": "#414a32",
+                "on-tertiary-container": "#bbc5a5",
+                "tertiary-container": "#495239",
+                "surface-container-high": "#2a2a2a",
+                "on-tertiary": "#2b331d",
+                "on-error": "#690005",
+                "surface-bright": "#393939",
+                "text-secondary": "#a1a1a1",
+                "background": "#131313",
+                "error-container": "#93000a",
+                "surface-container-low": "#1c1b1b",
+                "background-black": "#000000",
+                "secondary-container": "#444d27",
+                "glass-border": "rgba(255, 255, 255, 0.12)",
+                "on-primary": "#2d3404",
+                "secondary": "#c1cc9a",
+                "primary-fixed": "#dfe8a6",
+                "on-background": "#e5e2e1",
+                "tertiary-fixed-dim": "#c0cbab",
+                "primary": "#c3cc8c",
+                "text-primary": "#f2f2f2",
+                "on-secondary-fixed-variant": "#424a25",
+                "surface-tint": "#c3cc8c",
+                "surface": "#131313",
+                "error": "#ffb4ab",
+                "surface-variant": "#353534",
+                "on-secondary-fixed": "#171e01",
+                "primary-fixed-dim": "#c3cc8c",
+                "on-primary-fixed-variant": "#434b18",
+                "inverse-surface": "#e5e2e1",
+                "tertiary-fixed": "#dde7c6",
+                "on-secondary-container": "#b3bd8d",
+                "tactical-accent": "#5e6931",
+                "on-surface-variant": "#c8c7b8",
+                "outline": "#919283",
+                "on-secondary": "#2b3410",
+                "on-error-container": "#ffdad6",
+                "secondary-fixed-dim": "#c1cc9a"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "sidebar": "280px",
+                "margin-desktop": "32px",
+                "margin-mobile": "16px",
+                "glass-padding": "24px",
+                "base": "8px",
+                "gutter": "24px"
+            },
+            "fontFamily": {
+                "body-md": ["Inter"],
+                "headline-lg": ["Inter"],
+                "headline-lg-mobile": ["Inter"],
+                "label-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "headline-sm": ["Inter"],
+                "headline-md": ["Inter"],
+                "label-sm": ["Inter"],
+                "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        body {
+            background-color: #000000;
+        }
+        
+        .glass-panel {
+            background: #121212;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        
+        .glass-input {
+            background: #2a2a2a;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.3s ease;
+            color: #f2f2f2;
+        }
+        
+        .glass-input:focus {
+            background: #353534;
+            border-color: #4b5320;
+            box-shadow: 0 0 0 2px rgba(75, 83, 32, 0.2);
+        }
+        
+        .table-row-hover:hover {
+            background-color: #1c1b1b;
+        }
+
+        .section-panel {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .section-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-body-md text-text-primary antialiased text-body-md overflow-x-hidden">
+
+    <!-- Persistent SideNavBar -->
+    <nav class="fixed left-0 top-0 h-screen w-[280px] bg-background-black border-r border-glass-border z-50 flex flex-col py-base hidden md:flex">
+        <div class="px-gutter mb-8 mt-4">
+            <h1 class="font-headline-md text-headline-md font-bold text-text-primary">Ranaf Hub</h1>
+            <p class="font-label-md text-label-md text-text-secondary mt-1">Lecturer Portal</p>
+        </div>
+        <div class="px-4 mb-6">
+            <button onclick="switchTab('manage-attendance')" class="w-full bg-primary-container text-text-primary font-label-md text-label-md py-3 rounded-lg shadow-sm hover:bg-tactical-accent transition-colors flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+                New Session
+            </button>
+        </div>
+        <div class="flex-1 flex flex-col gap-1 overflow-y-auto w-full">
+            <a data-target="dashboard" class="flex items-center gap-3 px-4 py-3 border-l-4 border-primary bg-surface-container-high text-text-primary cursor-pointer active:scale-95 w-full" href="#">
+                <span class="material-symbols-outlined text-primary">dashboard</span>
+                <span class="font-label-md text-label-md text-primary">Dashboard</span>
+            </a>
+            <a data-target="manage-attendance" class="flex items-center gap-3 px-4 py-3 text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:scale-95 w-full" href="#">
+                <span class="material-symbols-outlined">how_to_reg</span>
+                <span class="font-label-md text-label-md">Attendance</span>
+            </a>
+            <a data-target="manage-materials" class="flex items-center gap-3 px-4 py-3 text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:scale-95 w-full" href="#">
+                <span class="material-symbols-outlined">folder_open</span>
+                <span class="font-label-md text-label-md">Materials</span>
+            </a>
+            <a data-target="manage-assessments" class="flex items-center gap-3 px-4 py-3 text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:scale-95 w-full" href="#">
+                <span class="material-symbols-outlined">assignment</span>
+                <span class="font-label-md text-label-md">Assessments</span>
+            </a>
+            <a data-target="chat" class="flex items-center gap-3 px-4 py-3 text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:scale-95 w-full" href="#">
+                <span class="material-symbols-outlined">forum</span>
+                <span class="font-label-md text-label-md">Community</span>
+            </a>
+            <a data-target="roster" class="flex items-center gap-3 px-4 py-3 text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:scale-95 w-full" href="#">
+                <span class="material-symbols-outlined">group</span>
+                <span class="font-label-md text-label-md">Roster</span>
+            </a>
+        </div>
+        <div class="mt-auto flex flex-col gap-1 pt-4 border-t border-glass-border">
+            <a class="flex items-center gap-3 px-4 py-3 text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:scale-95 w-full" href="#">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="font-label-md text-label-md">Settings</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:scale-95 w-full" href="#">
+                <span class="material-symbols-outlined">help_outline</span>
+                <span class="font-label-md text-label-md">Support</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content Area Wrapper -->
+    <div id="app-section" style="display: none;" class="md:ml-[280px] flex flex-col min-h-screen">
+        
+        <!-- TopAppBar -->
+        <header class="fixed top-0 right-0 w-full md:w-[calc(100%-280px)] h-20 bg-background-black/90 backdrop-blur-md border-b border-glass-border z-40 flex items-center justify-between px-margin-desktop">
+            <div class="flex items-center md:hidden">
+                <button onclick="toggleSidebar()" class="text-text-primary p-2 rounded-lg hover:bg-surface-container-high">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <span class="font-headline-md text-headline-md font-bold text-text-primary ml-2">Ranaf Hub</span>
+            </div>
+            
+            <div class="hidden md:flex flex-1 max-w-md ml-4">
+                <div class="relative w-full rounded-lg">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-text-secondary">
+                        <span class="material-symbols-outlined">search</span>
+                    </span>
+                    <input class="w-full glass-input rounded-lg py-2 pl-10 pr-4 text-body-md font-body-md focus:outline-none" placeholder="Search..." type="text"/>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4 ml-auto">
+                <button class="text-text-secondary hover:text-text-primary p-2 rounded-full transition-all">
+                    <span class="material-symbols-outlined">notifications</span>
+                </button>
+                <button class="text-text-secondary hover:text-text-primary p-2 rounded-full transition-all hidden sm:block">
+                    <span class="material-symbols-outlined">help</span>
+                </button>
+                <div class="h-8 w-px bg-glass-border hidden sm:block"></div>
+                
+                <!-- Profile & Logout Section -->
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <img alt="Dr. Lecturer Avatar" class="w-10 h-10 rounded-full object-cover border border-glass-border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4YvyfkajIlBlM0yoxZsmju1q5IUr3EePDuEnzySqDgszoYiJXL65L9ppJcDBkI6Fgncj76QRBUYezRk-4vLFPP9y2b6iyU5IS5zzolLsZ9SzmQWwLdw41VN0-iX6ifuPzbLuT-fO5XUKkU1m2qh6V7b2WHyQ-wdLjBnKSPep2pOOcocXvVrCiyqXIldvqsLxfRAnj17jAxl1W5PKSsLDb4-PINdC-o_oxKtdekXMBGI3C23VvD_jZ"/>
+                        <span id="user-name-display" class="font-label-md text-label-md font-medium text-text-primary hidden sm:block">Dr. Lecturer</span>
+                    </div>
+                    <button id="logout-btn" class="text-text-secondary hover:text-error p-2 rounded-full transition-all flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[20px]">logout</span>
+                        <span class="font-label-md text-label-md font-medium hidden sm:block">Logout</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <main class="flex-1 pt-24 px-4 md:px-margin-desktop pb-12 w-full max-w-7xl mx-auto">
+            
+            <div class="mb-8">
+                <h2 id="page-title" class="font-headline-lg text-headline-lg text-text-primary font-bold">Dashboard</h2>
+                <p class="font-body-md text-body-md text-text-secondary mt-1">Welcome back, Dr. Lecturer. Here's what's happening today.</p>
+            </div>
+
+            <!-- Dashboard Panel -->
+            <section id="dashboard" class="section-panel active">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+                    <div class="glass-panel rounded-xl p-6 flex flex-col justify-between relative overflow-hidden">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p class="font-label-md text-label-md text-text-secondary uppercase tracking-wider">Total Students</p>
+                                <h3 id="stat-total-students" class="font-display-lg text-display-lg text-text-primary mt-1">124</h3>
+                            </div>
+                            <div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+                            </div>
+                        </div>
+                        <p class="font-label-md text-label-md text-primary flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px]">trending_up</span> +4% from last week
+                        </p>
+                    </div>
+                    <div class="glass-panel rounded-xl p-6 flex flex-col justify-between relative overflow-hidden">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p class="font-label-md text-label-md text-text-secondary uppercase tracking-wider">Avg Attendance</p>
+                                <h3 class="font-display-lg text-display-lg text-text-primary mt-1">92%</h3>
+                            </div>
+                            <div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">how_to_reg</span>
+                            </div>
+                        </div>
+                        <p class="font-label-md text-label-md text-primary flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px]">trending_up</span> +2.1% this semester
+                        </p>
+                    </div>
+                    <div class="glass-panel rounded-xl p-6 flex flex-col justify-between relative overflow-hidden">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p class="font-label-md text-label-md text-text-secondary uppercase tracking-wider">Assignments Submitted</p>
+                                <h3 id="stat-total-submissions" class="font-display-lg text-display-lg text-text-primary mt-1">45</h3>
+                            </div>
+                            <div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assignment_turned_in</span>
+                            </div>
+                        </div>
+                        <p class="font-label-md text-label-md text-text-secondary flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px]">schedule</span> 15 pending review
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Quick actions / shortcuts -->
+                <div class="glass-panel rounded-xl p-6">
+                    <h3 class="font-headline-sm text-headline-sm text-text-primary mb-4">Quick Shortcuts</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <button onclick="switchTab('manage-attendance')" class="bg-surface-container-high border border-glass-border hover:bg-surface-container-highest transition-colors rounded-lg py-4 flex flex-col items-center gap-2 text-text-primary text-body-lg font-medium">
+                            <span class="material-symbols-outlined text-[28px] text-primary">sensors</span>
+                            Start Attendance
+                        </button>
+                        <button onclick="switchTab('manage-materials')" class="bg-surface-container-high border border-glass-border hover:bg-surface-container-highest transition-colors rounded-lg py-4 flex flex-col items-center gap-2 text-text-primary text-body-lg font-medium">
+                            <span class="material-symbols-outlined text-[28px] text-primary">cloud_upload</span>
+                            Publish Course Material
+                        </button>
+                        <button onclick="switchTab('roster')" class="bg-surface-container-high border border-glass-border hover:bg-surface-container-highest transition-colors rounded-lg py-4 flex flex-col items-center gap-2 text-text-primary text-body-lg font-medium">
+                            <span class="material-symbols-outlined text-[28px] text-primary">group</span>
+                            View Student Roster
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Attendance Panel -->
+            <section id="manage-attendance" class="section-panel">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Start attendance form -->
+                    <div class="lg:col-span-4 glass-panel rounded-xl p-6 h-fit">
+                        <h3 class="font-headline-sm text-headline-sm text-text-primary mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">sensors</span>
+                            Start Session
+                        </h3>
+                        <form class="flex flex-col gap-5">
+                            <div>
+                                <label class="font-label-md text-label-md text-text-secondary mb-2 block">Select Course</label>
+                                <select id="course-select" class="w-full glass-input rounded-lg py-2.5 px-3 font-body-md text-body-md focus:outline-none">
+                                    <option value="CS101">CS101 - Intro to Computer Science</option>
+                                    <option value="MATH201">MATH201 - Linear Algebra</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-text-secondary mb-2 block">Attendance Method</label>
+                                <select id="method-select" class="w-full glass-input rounded-lg py-2.5 px-3 font-body-md text-body-md focus:outline-none">
+                                    <option value="QR">QR Code Scanning</option>
+                                    <option value="OTP">OTP Pin</option>
+                                    <option value="WIFI">Campus WiFi Location</option>
+                                </select>
+                            </div>
+                            <button onclick="startSession()" class="bg-primary-container text-text-primary font-label-md text-label-md py-2.5 px-6 rounded-lg shadow-sm hover:bg-tactical-accent transition-colors flex items-center justify-center gap-2 mt-2 w-full" type="button">
+                                <span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                                Start Session
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Active sessions table -->
+                    <div class="lg:col-span-8 glass-panel rounded-xl overflow-hidden">
+                        <div class="p-6 border-b border-glass-border">
+                            <h3 class="font-headline-sm text-headline-sm text-text-primary">Active & Past Sessions</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-glass-border text-text-secondary font-label-md text-label-md bg-surface-charcoal">
+                                        <th class="py-4 px-6 font-medium">Course</th>
+                                        <th class="py-4 px-6 font-medium">Method</th>
+                                        <th class="py-4 px-6 font-medium">Time Started</th>
+                                        <th class="py-4 px-6 font-medium">Status / Code</th>
+                                        <th class="py-4 px-6 font-medium text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="active-sessions-list" class="font-body-md text-body-md bg-surface-charcoal">
+                                    <!-- Dynamic content via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Materials Panel -->
+            <section id="manage-materials" class="section-panel">
+                <div class="glass-panel rounded-xl p-8 max-w-xl mx-auto">
+                    <h3 class="font-headline-sm text-headline-sm text-text-primary mb-6 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">cloud_upload</span>
+                        Upload Materials
+                    </h3>
+                    <form class="flex flex-col gap-5">
+                        <div>
+                            <label class="font-label-md text-label-md text-text-secondary mb-2 block">Material Title</label>
+                            <input id="mat-title" class="w-full glass-input rounded-lg py-2.5 px-3 font-body-md text-body-md focus:outline-none placeholder:text-text-secondary/50" placeholder="e.g. Week 1 Slides" type="text"/>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="font-label-md text-label-md text-text-secondary mb-2 block">Course</label>
+                                <select id="mat-course" class="w-full glass-input rounded-lg py-2.5 px-3 font-body-md text-body-md focus:outline-none">
+                                    <option value="CS101">CS101</option>
+                                    <option value="MATH201">MATH201</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-text-secondary mb-2 block">Week</label>
+                                <select id="mat-week" class="w-full glass-input rounded-lg py-2.5 px-3 font-body-md text-body-md focus:outline-none">
+                                    <option value="1">Week 1</option>
+                                    <option value="2">Week 2</option>
+                                    <option value="3">Week 3</option>
+                                    <option value="4">Week 4</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="border-2 border-dashed border-glass-border rounded-xl p-8 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container-high/50 transition-colors bg-surface-container-high/20">
+                            <span class="material-symbols-outlined text-[40px] text-text-secondary mb-2">upload_file</span>
+                            <p class="font-body-md text-body-md text-text-primary font-medium">Drag &amp; drop files</p>
+                            <p class="font-label-md text-label-md text-text-secondary mt-1">or click to browse (Max 50MB)</p>
+                        </div>
+                        <button onclick="uploadMaterial()" class="w-full bg-primary-container text-text-primary font-label-md text-label-md py-3 rounded-lg hover:bg-tactical-accent transition-colors flex items-center justify-center gap-2" type="button">
+                            <span class="material-symbols-outlined">upload</span>
+                            Publish Document
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Assessments Panel -->
+            <section id="manage-assessments" class="section-panel">
+                <div class="glass-panel rounded-xl p-8 max-w-xl mx-auto">
+                    <h3 class="font-headline-sm text-headline-sm text-text-primary mb-6 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">assignment</span>
+                        New Assessment
+                    </h3>
+                    <form class="flex flex-col gap-5">
+                        <div>
+                            <label class="font-label-md text-label-md text-text-secondary mb-2 block">Assessment Title</label>
+                            <input id="ass-title" class="w-full glass-input rounded-lg py-2.5 px-3 font-body-md text-body-md focus:outline-none placeholder:text-text-secondary/50" placeholder="e.g. Midterm Project" type="text"/>
+                        </div>
+                        <div>
+                            <label class="font-label-md text-label-md text-text-secondary mb-2 block">Target Course</label>
+                            <select id="ass-course" class="w-full glass-input rounded-lg py-2.5 px-3 font-body-md text-body-md focus:outline-none">
+                                <option value="CS101">CS101</option>
+                                <option value="MATH201">MATH201</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="font-label-md text-label-md text-text-secondary mb-2 block">Deadline</label>
+                            <input id="ass-deadline" class="w-full glass-input rounded-lg py-2.5 px-3 font-body-md text-body-md focus:outline-none text-text-primary" type="date"/>
+                        </div>
+                        <button onclick="createAssessment()" class="w-full bg-primary-container text-text-primary font-label-md text-label-md py-3 rounded-lg hover:bg-tactical-accent transition-colors flex items-center justify-center gap-2" type="button">
+                            <span class="material-symbols-outlined">add</span>
+                            Create Assessment
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Chat Panel -->
+            <section id="chat" class="section-panel">
+                <div class="glass-panel rounded-xl overflow-hidden flex h-[500px]">
+                    <!-- Chat Sidebar -->
+                    <div class="w-64 border-r border-glass-border bg-surface-charcoal p-4 flex flex-col hidden sm:flex">
+                        <h4 class="font-label-md text-label-md text-text-secondary uppercase tracking-wider mb-4">Channels</h4>
+                        <ul class="flex flex-col gap-1 flex-1 overflow-y-auto">
+                            <li>
+                                <a class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container-high text-primary font-body-md text-body-md font-medium" href="#">
+                                    <span class="text-text-secondary">#</span> CS101 General
+                                </a>
+                            </li>
+                            <li>
+                                <a class="flex items-center gap-2 px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-container-high hover:text-text-primary font-body-md text-body-md transition-colors" href="#">
+                                    <span class="text-text-secondary">#</span> MATH201 Discussion
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Chat Main -->
+                    <div class="flex-1 flex flex-col bg-surface-charcoal relative">
+                        <div class="p-4 border-b border-glass-border bg-surface-charcoal flex justify-between items-center z-10">
+                            <div>
+                                <h3 class="font-headline-sm text-headline-sm text-text-primary flex items-center gap-2">
+                                    <span class="text-text-secondary text-[18px]">#</span> CS101 General
+                                </h3>
+                                <p class="font-label-md text-label-md text-text-secondary">Announcements & Discussions</p>
+                            </div>
+                        </div>
+                        <div class="flex-1 p-6 overflow-y-auto flex flex-col gap-6 relative" id="chat-messages">
+                            <!-- Dynamic chat content via JS -->
+                        </div>
+                        <div class="p-4 bg-surface-charcoal border-t border-glass-border z-10">
+                            <div class="relative">
+                                <input id="chat-input-text" class="w-full glass-input rounded-full py-3 pl-4 pr-12 font-body-md text-body-md focus:outline-none" placeholder="Type an announcement to #CS101 General..." type="text"/>
+                                <button onclick="sendMessage()" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-primary-container rounded-full flex items-center justify-center text-text-primary hover:bg-tactical-accent transition-colors">
+                                    <span class="material-symbols-outlined text-[16px]">send</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Roster Panel -->
+            <section id="roster" class="section-panel">
+                <div class="glass-panel rounded-xl overflow-hidden">
+                    <div class="p-6 border-b border-glass-border flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <h3 class="font-headline-sm text-headline-sm text-text-primary">Student Roster</h3>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-text-secondary">
+                                    <span class="material-symbols-outlined text-[18px]">search</span>
+                                </span>
+                                <input id="roster-search" class="glass-input rounded-lg py-2 pl-10 pr-4 text-body-md focus:outline-none w-full sm:w-64" placeholder="Search students..." type="text"/>
+                            </div>
+                            <select id="roster-course-filter" class="glass-input rounded-lg py-2 px-3 text-body-md focus:outline-none">
+                                <option value="all">All Courses</option>
+                                <option value="CS101">CS101</option>
+                                <option value="MATH201">MATH201</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-glass-border text-text-secondary font-label-md text-label-md bg-surface-charcoal">
+                                    <th class="py-4 px-6 font-medium">Student Name</th>
+                                    <th class="py-4 px-6 font-medium">ID</th>
+                                    <th class="py-4 px-6 font-medium">Course</th>
+                                    <th class="py-4 px-6 font-medium">Attendance</th>
+                                    <th class="py-4 px-6 font-medium">Status</th>
+                                    <th class="py-4 px-6 font-medium text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="roster-list" class="font-body-md text-body-md bg-surface-charcoal">
+                                <!-- Dynamic roster content via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- QR Code Display Modal -->
+    <div id="display-qr-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="glass-panel rounded-2xl shadow-2xl p-8 max-w-md w-full relative mx-4 text-center">
+            <button class="absolute top-4 right-4 text-text-secondary hover:text-text-primary transition-colors text-2xl" onclick="hideModal('display-qr-modal')">&times;</button>
+            <h3 class="font-headline-sm text-headline-sm text-text-primary mb-6">Scan to Mark Attendance</h3>
+            <div class="bg-white p-6 rounded-2xl inline-block mb-6">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=MockAttendanceCode" alt="QR Code" width="250" height="250">
+            </div>
+            <h2 id="qr-display-code" class="font-display-lg text-display-lg text-primary tracking-widest mb-4"></h2>
+            <p class="font-body-md text-body-md text-text-secondary">Tell students to scan this via the Ranaf Hub App.</p>
+        </div>
+    </div>
+
+    <!-- Student Profile Details Modal -->
+    <div id="student-profile-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="glass-panel rounded-2xl shadow-2xl p-8 max-w-2xl w-full relative mx-4 text-left">
+            <button class="absolute top-4 right-4 text-text-secondary hover:text-text-primary transition-colors" onclick="hideModal('student-profile-modal')">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div class="flex flex-col md:flex-row items-center gap-6 mb-8">
+                <div id="modal-student-avatar" class="w-24 h-24 rounded-full bg-primary-container text-white flex items-center justify-center font-bold text-3xl border-2 border-glass-border">AJ</div>
+                <div class="text-center md:text-left flex-1">
+                    <h2 id="modal-student-name" class="font-headline-md text-headline-md text-text-primary font-bold">Alex Johnson</h2>
+                    <p id="modal-student-id" class="text-text-secondary font-body-md">Student ID: 2023001</p>
+                    <div class="mt-3 flex flex-wrap justify-center md:justify-start gap-2">
+                        <span class="px-3 py-1 rounded-full bg-primary-container text-text-primary text-xs font-medium border border-glass-border">Active</span>
+                        <span id="modal-student-course-badge" class="px-3 py-1 rounded-full bg-surface-container-highest text-text-secondary text-xs font-medium border border-glass-border">CS101</span>
+                    </div>
+                </div>
+                <button class="bg-primary-container text-text-primary px-6 py-2 rounded-lg font-label-md hover:bg-tactical-accent transition-all flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">mail</span>
+                    Contact
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                <div class="bg-surface-container-high/30 p-4 rounded-xl border border-glass-border">
+                    <p class="text-xs text-text-secondary uppercase tracking-wider mb-1">Attendance</p>
+                    <p id="modal-student-attendance-stat" class="text-2xl font-bold text-primary">95%</p>
+                </div>
+                <div class="bg-surface-container-high/30 p-4 rounded-xl border border-glass-border">
+                    <p class="text-xs text-text-secondary uppercase tracking-wider mb-1">GPA</p>
+                    <p class="text-2xl font-bold text-primary">3.8</p>
+                </div>
+                <div class="bg-surface-container-high/30 p-4 rounded-xl border border-glass-border">
+                    <p class="text-xs text-text-secondary uppercase tracking-wider mb-1">Assignments</p>
+                    <p class="text-2xl font-bold text-primary">12/12</p>
+                </div>
+            </div>
+            
+            <div class="mb-8">
+                <h3 class="font-headline-sm text-headline-sm text-text-primary font-bold mb-4">Performance History</h3>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span id="modal-perf-course" class="text-text-secondary">CS101 - Intro to CS</span>
+                            <span id="modal-perf-pct" class="font-bold text-text-primary">95%</span>
+                        </div>
+                        <div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+                            <div id="modal-perf-bar" class="bg-primary h-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-4 bg-surface-container-high/30 rounded-xl border border-glass-border">
+                <h3 class="font-label-md text-label-md text-text-primary font-bold mb-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">emergency</span>
+                    Emergency Contact
+                </h3>
+                <p class="text-body-md text-text-secondary">Sarah Johnson (Mother) • +1 (555) 012-3456</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
